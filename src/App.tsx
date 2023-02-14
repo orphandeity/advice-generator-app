@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useWindowDimensions from './useWindowDimensions';
 import { PatternDividerDesktop, PatternDividerMobile, DiceIcon } from './Icons';
 
 type TAdvice = {
@@ -8,6 +9,8 @@ type TAdvice = {
 
 function App() {
   const [advice, setAdvice] = useState<TAdvice | null>();
+
+  const width = useWindowDimensions();
 
   async function getAdvice() {
     const adviceUrl = 'https://api.adviceslip.com/advice';
@@ -26,16 +29,16 @@ function App() {
 
   return (
     <main className="relative grid min-h-screen place-content-center">
-      <div className="relative flex max-w-xl flex-col items-center rounded-xl bg-_dark-grayish-blue px-12 pt-12 pb-20 shadow-xl">
-        <p className="text-sm uppercase tracking-widest text-_neon-green">
+      <div className="relative flex max-w-xs flex-col items-center rounded-xl bg-_dark-grayish-blue px-12 pt-12 pb-16 shadow-xl desktop:max-w-xl">
+        <h1 className="text-xs uppercase tracking-widest text-_neon-green desktop:text-sm">
           Advice #{advice?.id}
-        </p>
+        </h1>
 
-        <q className="py-8 text-center text-[28px] font-bold text-_light-cyan">
+        <q className="py-8 text-center text-[22px] font-bold leading-8 text-_light-cyan desktop:text-[28px] desktop:leading-9">
           {advice?.advice}
         </q>
 
-        <PatternDividerDesktop />
+        {width >= 1440 ? <PatternDividerDesktop /> : <PatternDividerMobile />}
         <button
           onClick={() => getAdvice()}
           className="absolute bottom-0 translate-y-1/2 rounded-full bg-_neon-green p-5 hover:shadow-glow"
