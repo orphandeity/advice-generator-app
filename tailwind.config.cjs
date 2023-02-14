@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'glow': '0px 0px 30px 8px rgba(82,255,169,0.6)'
+      },
       colors: {
         '_light-cyan': '#cee3e9',
         '_neon-green': '#52ffa8',
