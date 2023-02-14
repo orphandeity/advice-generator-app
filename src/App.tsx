@@ -41,6 +41,7 @@ function App() {
         {width >= 1440 ? <PatternDividerDesktop /> : <PatternDividerMobile />}
         <button
           onClick={() => getAdvice()}
+          aria-label='get advice button'
           className="absolute bottom-0 translate-y-1/2 rounded-full bg-_neon-green p-5 hover:shadow-glow"
         >
           <DiceIcon />
